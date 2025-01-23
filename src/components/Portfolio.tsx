@@ -12,8 +12,8 @@ const projects = [
   {
     name: 'Portfolio Live 2025',
     description: 'A personal portfolio to showcase my skills and projects. Based on Simple React, Vite, Material UI & Typescript, Vercel, GitHub',
-    liveLink: 'https://my-portfolio2025-gamma.vercel.app/',
-    sourceCode: 'https://github.com/nermeennasim/MyPortfolio2025',
+    liveLink: 'https://its-all-about-me-nermeen-nasim.vercel.app/',
+    sourceCode: 'https://github.com/nermeennasim/ItsAllAboutMe-NermeenNasim',
   },
   {
     name: 'Age Calculator',
