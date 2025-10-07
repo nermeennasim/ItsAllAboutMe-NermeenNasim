@@ -1,0 +1,49 @@
+/* Custom Delius Fonts */
+@font-face {
+    font-family: 'Delius';
+    src: url('/fonts/Delius-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Delius Swash Caps';
+    src: url('/fonts/DeliusSwashCaps-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Global font settings */
+body {
+    font-family: 'Delius', 'Arial', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Headings use Delius Swash Caps */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Delius Swash Caps', 'Delius', cursive;
+    font-weight: normal;
+}
+
+/* Button and form elements */
+button,
+input,
+textarea,
+select {
+    font-family: 'Delius', 'Arial', sans-serif;
+}
+
+/* Ensure proper font loading */
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
