@@ -1,0 +1,45 @@
+/* Image Protection Styles */
+.protected-image {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+  
+  pointer-events: none;
+}
+
+.protected-container {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Disable right-click globally on protected elements */
+.no-right-click {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Additional protection against developer tools */
+@media print {
+  .protected-image,
+  .protected-container {
+    display: none !important;
+  }
+}
+
+/* Hide from screen readers when being screenshot */
+.protected-image[aria-hidden="true"] {
+  visibility: hidden;
+}

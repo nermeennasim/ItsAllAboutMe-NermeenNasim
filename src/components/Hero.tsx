@@ -7,6 +7,7 @@ import EmailIcon from "@mui/icons-material/Email";
 import DownloadIcon from "@mui/icons-material/Download";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import profileImage from "../assets/profile.jpg";
+import "../assets/styles/imageProtection.css";
 
 const Hero = () => {
 	const theme = useTheme();
@@ -290,13 +291,22 @@ const Hero = () => {
 
 						{/* Profile Image - Right Side */}
 						<Grid item xs={12} md={6}>
-							<motion.div variants={imageVariants}>
+							<motion.div
+								variants={imageVariants}
+								onContextMenu={(e) => e.preventDefault()} // Disable right-click on entire section
+								onDragStart={(e) => e.preventDefault()} // Disable drag on entire section
+								className="protected-container no-right-click">
 								<Box
+									className="protected-container"
 									sx={{
 										position: "relative",
 										display: "flex",
 										justifyContent: "center",
 										alignItems: "center",
+										userSelect: "none",
+										WebkitUserSelect: "none",
+										MozUserSelect: "none",
+										msUserSelect: "none",
 									}}>
 									{/* Decorative Background Circle */}
 									<Box
@@ -317,6 +327,23 @@ const Hero = () => {
 
 									{/* Profile Image Container */}
 									<Box
+										className="protected-container no-right-click"
+										onContextMenu={(e) => e.preventDefault()} // Disable right-click
+										onDragStart={(e) => e.preventDefault()} // Disable drag
+										onKeyDown={(e) => {
+											// Disable common screenshot/save shortcuts
+											if (
+												(e.ctrlKey && (e.key === "s" || e.key === "S")) || // Ctrl+S
+												(e.ctrlKey &&
+													e.shiftKey &&
+													(e.key === "s" || e.key === "S")) || // Ctrl+Shift+S
+												e.key === "PrintScreen" || // Print Screen
+												(e.altKey && e.key === "PrintScreen") // Alt+Print Screen
+											) {
+												e.preventDefault();
+												e.stopPropagation();
+											}
+										}}
 										sx={{
 											position: "relative",
 											width: { xs: "280px", md: "400px" },
@@ -329,6 +356,14 @@ const Hero = () => {
 													? "0 20px 60px rgba(9, 18, 44, 0.2)"
 													: "0 20px 60px rgba(0, 0, 0, 0.5)",
 											background: `linear-gradient(135deg, ${theme.palette.primary.main}, ${theme.palette.warning.main})`,
+											// CSS protection against screenshots
+											userSelect: "none",
+											WebkitUserSelect: "none",
+											MozUserSelect: "none",
+											msUserSelect: "none",
+											// Additional protection
+											"-webkit-touch-callout": "none",
+											"-webkit-tap-highlight-color": "transparent",
 											"&::before": {
 												content: '""',
 												position: "absolute",
@@ -338,18 +373,42 @@ const Hero = () => {
 												bottom: 0,
 												background: `linear-gradient(135deg, ${theme.palette.primary.main}20, ${theme.palette.warning.main}20)`,
 												zIndex: 1,
+												pointerEvents: "none",
+											},
+											// Anti-screenshot overlay (subtle)
+											"&::after": {
+												content: '""',
+												position: "absolute",
+												top: 0,
+												left: 0,
+												right: 0,
+												bottom: 0,
+												background: "transparent",
+												zIndex: 2,
+												pointerEvents: "auto",
 											},
 										}}>
 										<img
+											className="protected-image no-right-click"
 											src={profileImage}
 											alt="Nermeen Nasim - Software Engineer"
-											style={{
-												width: "100%",
-												height: "100%",
-												objectFit: "cover",
-												position: "relative",
-												zIndex: 0,
-											}}
+											onContextMenu={(e) => e.preventDefault()} // Additional right-click protection on image
+											onDragStart={(e) => e.preventDefault()} // Additional drag protection on image
+											draggable={false} // HTML5 draggable attribute
+											style={
+												{
+													width: "100%",
+													height: "100%",
+													objectFit: "cover",
+													position: "relative",
+													zIndex: 0,
+													userSelect: "none",
+													WebkitUserSelect: "none",
+													MozUserSelect: "none",
+													msUserSelect: "none",
+													pointerEvents: "none", // Prevent direct interaction with image
+												} as React.CSSProperties
+											}
 										/>
 									</Box>
 
