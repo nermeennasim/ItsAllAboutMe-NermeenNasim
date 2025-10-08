@@ -1,5 +1,22 @@
-// api/contact.js - Serverless function for contact form
+// api/contact.js - Serverless function for contact form (Vercel deployment)
 export default async function handler(req, res) {
+	// Set CORS headers
+	res.setHeader("Access-Control-Allow-Credentials", true);
+	res.setHeader("Access-Control-Allow-Origin", "*"); // In production, replace with your domain
+	res.setHeader(
+		"Access-Control-Allow-Methods",
+		"GET,OPTIONS,PATCH,DELETE,POST,PUT"
+	);
+	res.setHeader(
+		"Access-Control-Allow-Headers",
+		"X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version"
+	);
+
+	// Handle preflight request
+	if (req.method === "OPTIONS") {
+		return res.status(200).end();
+	}
+
 	if (req.method !== "POST") {
 		return res.status(405).json({ message: "Method not allowed" });
 	}
@@ -22,7 +39,7 @@ export default async function handler(req, res) {
 		const sgMail = require("@sendgrid/mail");
 
 		// Set your SendGrid API key (you'll need to add this to your environment variables)
-		sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+		sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
 
 		// Email template
 		const msg = {

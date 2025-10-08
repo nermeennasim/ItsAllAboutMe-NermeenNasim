@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
 	Container,
 	TextField,
@@ -23,22 +23,33 @@ import {
 	GitHub,
 	CheckCircle,
 } from "@mui/icons-material";
+import { useContactMutation } from "../hooks/useContactMutation";
 
 const Contact = () => {
 	const theme = useTheme();
 	const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
+
+	// Use the mutation hook
+	const { mutate, isLoading, isSuccess, isError, error, data, reset } =
+		useContactMutation();
+
 	const [formData, setFormData] = useState({
 		name: "",
 		email: "",
 		subject: "",
 		message: "",
 	});
-	const [status, setStatus] = useState<
-		"idle" | "loading" | "success" | "error"
-	>("idle");
-	const [responseMessage, setResponseMessage] = useState("");
 
-	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+	// Clear form on success
+	useEffect(() => {
+		if (isSuccess) {
+			setFormData({ name: "", email: "", subject: "", message: "" });
+		}
+	}, [isSuccess]);
+
+	const handleInputChange = (
+		e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+	) => {
 		const { name, value } = e.target;
 		setFormData((prev) => ({
 			...prev,
@@ -48,36 +59,10 @@ const Contact = () => {
 
 	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
-		setStatus("loading");
-
-		try {
-			// For now, we'll use a simple form service (you can replace with SendGrid later)
-			const response = await fetch("/api/contact", {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify(formData),
-			});
-
-			if (response.ok) {
-				setStatus("success");
-				setResponseMessage(
-					"Thank you! Your message has been sent successfully."
-				);
-				setFormData({ name: "", email: "", subject: "", message: "" });
-			} else {
-				throw new Error("Failed to send message");
-			}
-		} catch (error) {
-			setStatus("error");
-			setResponseMessage(
-				"Sorry, there was an error sending your message. Please try again or contact me directly."
-			);
-		}
+		reset(); // Clear any previous errors/success
+		await mutate(formData);
 	};
 
-	// For now, let's use a simple mailto fallback
 	const handleQuickContact = () => {
 		window.location.href = `mailto:nimmi24.1990@gmail.com?subject=${
 			formData.subject || "Contact from Portfolio"
@@ -102,6 +87,7 @@ const Contact = () => {
 			transition: { duration: 0.6 },
 		},
 	};
+
 	return (
 		<Box
 			id="contact"
@@ -139,9 +125,9 @@ const Contact = () => {
 							sx={{
 								color: theme.palette.text.primary,
 								textAlign: "center",
-								fontWeight: 700,
+								fontWeight: 400,
 								marginBottom: 2,
-								fontFamily: theme.typography.h3.fontFamily,
+								fontFamily: '"Delius Swash Caps", cursive',
 							}}>
 							<Email
 								sx={{
@@ -162,7 +148,7 @@ const Contact = () => {
 								marginBottom: 6,
 								maxWidth: "600px",
 								margin: "0 auto 3rem",
-								fontFamily: theme.typography.body1.fontFamily,
+								fontFamily: '"Delius", sans-serif',
 							}}>
 							Ready to bring your ideas to life? Let's discuss your next project
 						</Typography>
@@ -175,10 +161,9 @@ const Contact = () => {
 								<Card
 									sx={{
 										height: "100%",
-										background: (theme) =>
-											`linear-gradient(135deg, ${theme.palette.background.paper} 0%, rgba(225, 117, 100, 0.02) 100%)`,
+										background: theme.palette.background.paper,
 										borderRadius: 3,
-										border: "1px solid rgba(225, 117, 100, 0.1)",
+										border: `1px solid ${theme.palette.divider}`,
 										p: 3,
 									}}>
 									<CardContent>
@@ -188,7 +173,7 @@ const Contact = () => {
 												fontWeight: 600,
 												mb: 3,
 												color: theme.palette.text.primary,
-												fontFamily: theme.typography.h6.fontFamily,
+												fontFamily: '"Delius Swash Caps", cursive',
 											}}>
 											Contact Information
 										</Typography>
@@ -201,7 +186,10 @@ const Contact = () => {
 												<Typography variant="body2" color="text.secondary">
 													Email
 												</Typography>
-												<Typography variant="body1" fontWeight={500}>
+												<Typography
+													variant="body1"
+													fontWeight={500}
+													sx={{ fontFamily: '"Delius", sans-serif' }}>
 													nimmi24.1990@gmail.com
 												</Typography>
 											</Box>
@@ -215,7 +203,10 @@ const Contact = () => {
 												<Typography variant="body2" color="text.secondary">
 													Location
 												</Typography>
-												<Typography variant="body1" fontWeight={500}>
+												<Typography
+													variant="body1"
+													fontWeight={500}
+													sx={{ fontFamily: '"Delius", sans-serif' }}>
 													Available Globally (Remote)
 												</Typography>
 											</Box>
@@ -238,6 +229,7 @@ const Contact = () => {
 													sx={{
 														textDecoration: "none",
 														color: "inherit",
+														fontFamily: '"Delius", sans-serif',
 														"&:hover": { color: theme.palette.error.main },
 													}}>
 													/in/n-nasim
@@ -262,6 +254,7 @@ const Contact = () => {
 													sx={{
 														textDecoration: "none",
 														color: "inherit",
+														fontFamily: '"Delius", sans-serif',
 														"&:hover": { color: theme.palette.primary.main },
 													}}>
 													/nermeennasim
@@ -270,7 +263,13 @@ const Contact = () => {
 										</Box>
 
 										<Box sx={{ mt: 4 }}>
-											<Typography variant="h6" sx={{ mb: 2, fontWeight: 600 }}>
+											<Typography
+												variant="h6"
+												sx={{
+													mb: 2,
+													fontWeight: 600,
+													fontFamily: '"Delius Swash Caps", cursive',
+												}}>
 												Services I Offer
 											</Typography>
 											<Box sx={{ display: "flex", flexWrap: "wrap", gap: 1 }}>
@@ -289,6 +288,7 @@ const Contact = () => {
 															backgroundColor: "rgba(225, 117, 100, 0.1)",
 															color: theme.palette.warning.main,
 															fontWeight: 500,
+															fontFamily: '"Delius", sans-serif',
 														}}
 													/>
 												))}
@@ -304,25 +304,25 @@ const Contact = () => {
 							<motion.div variants={itemVariants}>
 								<Card
 									sx={{
-										background: (theme) =>
-											`linear-gradient(135deg, ${theme.palette.background.paper} 0%, rgba(225, 117, 100, 0.02) 100%)`,
+										background: theme.palette.background.paper,
 										borderRadius: 3,
-										border: "1px solid rgba(225, 117, 100, 0.1)",
+										border: `1px solid ${theme.palette.divider}`,
 										p: 4,
 									}}>
 									<CardContent>
-										{status === "success" && (
+										{isSuccess && (
 											<Alert
 												severity="success"
 												icon={<CheckCircle />}
 												sx={{ mb: 3 }}>
-												{responseMessage}
+												{data?.message ||
+													"Thank you! Your message has been sent successfully."}
 											</Alert>
 										)}
 
-										{status === "error" && (
+										{isError && (
 											<Alert severity="error" sx={{ mb: 3 }}>
-												{responseMessage}
+												{error || "Failed to send message. Please try again."}
 											</Alert>
 										)}
 
@@ -336,8 +336,10 @@ const Contact = () => {
 														required
 														value={formData.name}
 														onChange={handleInputChange}
+														disabled={isLoading}
 														sx={{
 															"& .MuiOutlinedInput-root": {
+																fontFamily: '"Delius", sans-serif',
 																"&:hover fieldset": {
 																	borderColor: theme.palette.warning.main,
 																},
@@ -357,8 +359,10 @@ const Contact = () => {
 														required
 														value={formData.email}
 														onChange={handleInputChange}
+														disabled={isLoading}
 														sx={{
 															"& .MuiOutlinedInput-root": {
+																fontFamily: '"Delius", sans-serif',
 																"&:hover fieldset": {
 																	borderColor: theme.palette.warning.main,
 																},
@@ -377,8 +381,10 @@ const Contact = () => {
 														required
 														value={formData.subject}
 														onChange={handleInputChange}
+														disabled={isLoading}
 														sx={{
 															"& .MuiOutlinedInput-root": {
+																fontFamily: '"Delius", sans-serif',
 																"&:hover fieldset": {
 																	borderColor: theme.palette.warning.main,
 																},
@@ -399,8 +405,10 @@ const Contact = () => {
 														required
 														value={formData.message}
 														onChange={handleInputChange}
+														disabled={isLoading}
 														sx={{
 															"& .MuiOutlinedInput-root": {
+																fontFamily: '"Delius", sans-serif',
 																"&:hover fieldset": {
 																	borderColor: theme.palette.warning.main,
 																},
@@ -418,13 +426,13 @@ const Contact = () => {
 															type="submit"
 															variant="contained"
 															startIcon={
-																status === "loading" ? (
+																isLoading ? (
 																	<CircularProgress size={20} color="inherit" />
 																) : (
 																	<Send />
 																)
 															}
-															disabled={status === "loading"}
+															disabled={isLoading}
 															sx={{
 																backgroundColor: theme.palette.warning.main,
 																fontWeight: 600,
@@ -432,13 +440,12 @@ const Contact = () => {
 																px: 4,
 																py: 1.5,
 																borderRadius: 2,
+																fontFamily: '"Delius", sans-serif',
 																"&:hover": {
 																	backgroundColor: theme.palette.warning.dark,
 																},
 															}}>
-															{status === "loading"
-																? "Sending..."
-																: "Send Message"}
+															{isLoading ? "Sending..." : "Send Message"}
 														</Button>
 
 														<Button
@@ -453,6 +460,7 @@ const Contact = () => {
 																px: 4,
 																py: 1.5,
 																borderRadius: 2,
+																fontFamily: '"Delius", sans-serif',
 																"&:hover": {
 																	borderColor: theme.palette.secondary.main,
 																	backgroundColor: `${theme.palette.secondary.main}20`,

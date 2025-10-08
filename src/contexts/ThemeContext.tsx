@@ -11,13 +11,23 @@ const themeConfig = {
 		secondary: "#BE3144", // Red - secondary brand color
 		background: "#ffffff", // Clean white
 		surface: "rgb(246, 222, 216)", // Light peachy surface from your light shades
+		surfaceLight: "rgb(250, 240, 235)", // Even lighter surface
 		text: "#09122C", // Dark navy text
 		textSecondary: "#872341", // Deep burgundy secondary text
 		border: "rgb(242, 178, 140)", // Light coral border from your shades
+		borderLight: "rgb(248, 200, 180)", // Even lighter border
 		accent: "#E17564", // Coral accent
+		accentLight: "rgb(230, 140, 120)", // Lighter accent
+		tertiary: "#872341", // Deep burgundy
+		tertiaryLight: "rgb(160, 70, 90)", // Lighter tertiary
+		primaryLight: "rgb(25, 40, 80)", // Lighter primary
+		secondaryLight: "rgb(200, 60, 80)", // Lighter secondary
 		success: "#10b981", // Green
 		warning: "#BE3144", // Red warning
 		error: "#872341", // Deep burgundy error
+		inputBg: "#ffffff", // White input background
+		inputBgLight: "rgb(252, 248, 245)", // Light input background
+		inputBorder: "rgb(210, 102, 90)", // Medium coral input border
 		// Additional light shades for variety
 		lightShade1: "rgb(184, 33, 50)", // Deep coral-red
 		lightShade2: "rgb(210, 102, 90)", // Medium coral
@@ -30,13 +40,23 @@ const themeConfig = {
 		secondary: "#BE3144", // Red - keeping consistent
 		background: "#09122C", // Dark navy background
 		surface: "#1a2441", // Darker navy surface (lightened #09122C)
+		surfaceLight: "#243050", // Even lighter surface for dark mode
 		text: "#ffffff", // White text
 		textSecondary: "#E17564", // Coral secondary text
 		border: "#872341", // Deep burgundy border
+		borderLight: "#a0395a", // Lighter border for dark mode
 		accent: "#E17564", // Coral accent
+		accentLight: "#f0a090", // Lighter accent for dark mode
+		tertiary: "#872341", // Deep burgundy
+		tertiaryLight: "#a0395a", // Lighter tertiary for dark mode
+		primaryLight: "#f0a090", // Lighter primary (coral) for dark mode
+		secondaryLight: "#d05060", // Lighter secondary for dark mode
 		success: "#34d399", // Light green
 		warning: "#BE3144", // Red warning
 		error: "#872341", // Deep burgundy error
+		inputBg: "#0f1a35", // Darker navy input background
+		inputBgLight: "#15213a", // Lighter input background for dark mode
+		inputBorder: "#872341", // Deep burgundy input border
 		// Additional shades for dark mode - muted versions of light shades
 		lightShade1: "rgba(184, 33, 50, 0.8)", // Muted deep coral-red
 		lightShade2: "rgba(210, 102, 90, 0.7)", // Muted medium coral
