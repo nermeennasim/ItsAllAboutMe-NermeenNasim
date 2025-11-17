@@ -1,23 +1,5 @@
 {
   "buildCommand": "vite build",
-  "functions": {
-    "backend/api/send-email.js": {
-      "maxDuration": 10
-    },
-    "backend/api/contact.js": {
-      "maxDuration": 10
-    }
-  },
-  "rewrites": [
-    {
-      "source": "/api/send-email",
-      "destination": "/backend/api/send-email.js"
-    },
-    {
-      "source": "/api/contact",
-      "destination": "/backend/api/contact.js"
-    }
-  ],
   "headers": [
     {
       "source": "/api/(.*)",
