@@ -1,10 +1,23 @@
 {
   "buildCommand": "vite build",
   "functions": {
-    "api/contact.js": {
+    "backend/api/send-email.js": {
+      "maxDuration": 10
+    },
+    "backend/api/contact.js": {
       "maxDuration": 10
     }
   },
+  "rewrites": [
+    {
+      "source": "/api/send-email",
+      "destination": "/backend/api/send-email.js"
+    },
+    {
+      "source": "/api/contact",
+      "destination": "/backend/api/contact.js"
+    }
+  ],
   "headers": [
     {
       "source": "/api/(.*)",
@@ -15,8 +28,5 @@
         { "key": "Access-Control-Allow-Headers", "value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version" }
       ]
     }
-  ],
-  "env": {
-    "SEND_GRID_API_KEY": "@send_grid_api_key"
-  }
+  ]
 }

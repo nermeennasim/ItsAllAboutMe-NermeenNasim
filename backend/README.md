@@ -1,15 +1,86 @@
-# Portfolio Backend
+# Backend API - Email Service (Serverless Functions)
 
-A Node.js/Express backend API for the portfolio contact form with SendGrid email integration.
+Serverless functions for handling contact form submissions via SendGrid on Vercel.
+
+## 📁 Structure
+
+```
+backend/
+├── api/
+│   ├── send-email.js    # Main email API endpoint (recommended)
+│   └── contact.js       # Legacy contact endpoint
+```
 
 ## Features
 
 - 📧 Contact form with SendGrid email integration
-- 🛡️ Security middleware (Helmet, CORS, Rate limiting)
-- ✅ Input validation and sanitization
-- 📨 Auto-reply emails to form submitters
+- 🛡️ Security: CORS headers, input validation, email validation
+- ✅ Auto-reply emails to form submitters
+- 🔒 Environment variable validation
+- ⚡ Serverless deployment on Vercel
 - 🚀 Ready for production deployment
 - 📝 Comprehensive logging
+
+## 🚀 Setup Instructions for Vercel
+
+### 1. SendGrid Account Setup
+
+1. **Create a SendGrid account** (free tier available)
+   - Go to: https://signup.sendgrid.com/
+   - Sign up and verify your email
+
+2. **Create an API Key**
+   - Navigate to Settings > API Keys
+   - Click "Create API Key"
+   - Choose "Restricted Access" and enable:
+     - Mail Send: Full Access
+   - Copy your API key (starts with `SG.`)
+   - **Keep it secret and secure!**
+
+3. **Verify Sender Identity**
+   - Go to Settings > Sender Authentication
+   - Verify your sender email: `noreply@nermeennasim.dev`
+   - Or use Single Sender Verification
+
+### 2. Vercel Environment Variables
+
+**In Vercel Dashboard:**
+1. Go to your project → Settings → Environment Variables
+2. Add these variables:
+
+| Variable Name      | Value                                    |
+|-------------------|-------------------------------------------|
+| `SENDGRID_API_KEY` | Your actual SendGrid API key (SG.xxx...) |
+| `TO_EMAIL`        | `nimmi24.1990@gmail.com`                  |
+| `FROM_EMAIL`      | `noreply@nermeennasim.dev`               |
+| `NODE_ENV`        | `production`                              |
+
+### 3. API Endpoint
+
+**URL:** `/api/send-email`
+
+**Method:** `POST`
+
+**Request Body:**
+```json
+{
+  "name": "John Doe",
+  "email": "john@example.com",
+  "subject": "Test Message",
+  "message": "This is a test message."
+}
+```
+
+## 📧 Email Flow
+
+1. **Notification Email** → `nimmi24.1990@gmail.com`
+   - Contains sender's details and message
+   - Reply-To set to sender's email
+
+2. **Auto-Reply** → Form submitter
+   - Confirmation message
+   - Social media links
+   - Copy of their message
 
 ## Getting Started
 

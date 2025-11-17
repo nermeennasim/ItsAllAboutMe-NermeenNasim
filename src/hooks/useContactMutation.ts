@@ -45,10 +45,10 @@ export const useContactMutation = (): UseContactMutationReturn => {
     });
 
     try {
-      // API URL - use localhost:5000 in development
+      // API URL - use contact endpoint for local dev, send-email for production
       const apiUrl = import.meta.env.DEV 
         ? 'http://localhost:5000/api/contact'
-        : '/api/contact';
+        : '/api/send-email';
 
       console.log('Sending to:', apiUrl);
       console.log('Form data:', formData);
