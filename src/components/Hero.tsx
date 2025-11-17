@@ -224,42 +224,41 @@ const Hero = () => {
 									</Stack>
 								</motion.div>
 
-								{/* Resume Download Button */}
-								<motion.div variants={itemVariants}>
-									<Button
-										variant="contained"
-										size="large"
-										startIcon={<DownloadIcon />}
-										href="/NermeenNasim-SeniorSoftwareEngineer2025.pdf"
-										download="NermeenNasim-Resume.pdf"
-										sx={{
+							{/* Resume Download Button */}
+							<motion.div variants={itemVariants}>
+								<Button
+									variant="contained"
+									size="large"
+									startIcon={<DownloadIcon />}
+									href="https://docs.google.com/document/d/1WGkUcK-H7RQxPKs2nwUs_8CVfnyEN65PGoqQJB2xRcQ/edit?usp=sharing"
+									target="_blank"
+									rel="noopener noreferrer"
+									sx={{
+										background:
+											theme.palette.mode === "light"
+												? `linear-gradient(135deg, ${theme.palette.success.main}, #059669)`
+												: `linear-gradient(135deg, ${theme.palette.success.main}, #6ee7b7)`,
+										color: "#ffffff",
+										px: 4,
+										py: 1.5,
+										fontSize: "1rem",
+										fontWeight: 600,
+										borderRadius: 3,
+										mb: 4,
+										boxShadow: "0 8px 24px rgba(16, 185, 129, 0.25)",
+										"&:hover": {
 											background:
 												theme.palette.mode === "light"
-													? `linear-gradient(135deg, ${theme.palette.success.main}, #059669)`
-													: `linear-gradient(135deg, ${theme.palette.success.main}, #6ee7b7)`,
-											color: "#ffffff",
-											px: 4,
-											py: 1.5,
-											fontSize: "1rem",
-											fontWeight: 600,
-											borderRadius: 3,
-											mb: 4,
-											boxShadow: "0 8px 24px rgba(16, 185, 129, 0.25)",
-											"&:hover": {
-												background:
-													theme.palette.mode === "light"
-														? `linear-gradient(135deg, #059669, #047857)`
-														: `linear-gradient(135deg, #6ee7b7, ${theme.palette.success.main})`,
-												transform: "translateY(-2px)",
-												boxShadow: "0 12px 32px rgba(16, 185, 129, 0.35)",
-											},
-											transition: "all 0.3s ease",
-										}}>
-										Download My Resume
-									</Button>
-								</motion.div>
-
-								<motion.div
+													? `linear-gradient(135deg, #059669, #047857)`
+													: `linear-gradient(135deg, #6ee7b7, ${theme.palette.success.main})`,
+											transform: "translateY(-2px)",
+											boxShadow: "0 12px 32px rgba(16, 185, 129, 0.35)",
+										},
+										transition: "all 0.3s ease",
+									}}>
+									Download My Resume
+								</Button>
+							</motion.div>								<motion.div
 									variants={itemVariants}
 									animate={{ y: [0, 10, 0] }}
 									transition={{

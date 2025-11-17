@@ -81,7 +81,7 @@ const projects = [
 		name: "Canada Cloud Solution",
 		description:
 			"Cloud infrastructure and consulting platform providing enterprise-level cloud solutions and DevOps services for Canadian businesses.",
-		liveLink: "https://canadacloudsolution.ca",
+		liveLink: "https://canadcloudsolution.ca",
 		sourceCode: "PROPRIETARY",
 		tags: ["Cloud", "DevOps", "Enterprise"],
 	},

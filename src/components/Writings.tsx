@@ -23,6 +23,16 @@ import {
 
 const writings = [
 	{
+		title: "10 GitHub Copilot Commands That Will Rocket Your Coding in 2025",
+		description:
+			"Super-charge your development workflow with these essential GitHub Copilot commands and tips for maximum productivity in 2025.",
+		link: "https://medium.com/@nermeennasim/10-github-copilot-commands-that-will-super-rocket-your-coding-in-2025-941c97924e9f",
+		category: "Technical",
+		readTime: "10 min read",
+		tags: ["GitHub Copilot", "Productivity", "AI", "Development Tools"],
+		icon: <Code />,
+	},
+	{
 		title: "Front-End Interview Skills: HTML, CSS, React Challenges",
 		description:
 			"Boost your front-end interview preparation with bite-sized coding challenges covering HTML, CSS, and React fundamentals.",
@@ -61,6 +71,16 @@ const writings = [
 		readTime: "15 min read",
 		tags: ["REST API", "Backend", "Testing", "Best Practices"],
 		icon: <Api />,
+	},
+	{
+		title: "16 Personality Types: The Personality Transformation I Never Saw Coming",
+		description:
+			"A personal journey through the 16 personality types from ISTJ to ESFP, exploring the unexpected transformation and insights gained along the way.",
+		link: "https://medium.com/@nermeennasim/16-personality-types-from-istj-to-esfp-the-personality-transformation-i-never-saw-coming-c091a09025b6",
+		category: "Personal Development",
+		readTime: "9 min read",
+		tags: ["Personality", "MBTI", "Self-Discovery", "Personal Growth"],
+		icon: <Psychology />,
 	},
 	{
 		title: "Unlock the Secret Power of Your Mind",
