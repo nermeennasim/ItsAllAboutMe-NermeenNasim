@@ -102,6 +102,98 @@ const Hero = () => {
 						{/* Text Content - Left Side */}
 						<Grid item xs={12} md={6}>
 							<Box>
+								{/* Hackathon Achievement Banner */}
+								<motion.div variants={itemVariants}>
+									<Box
+										sx={{
+										background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
+										borderRadius: 3,
+										p: 3,
+										mb: 4,
+										boxShadow: theme.palette.mode === 'dark' ? '0 8px 32px rgba(190, 49, 68, 0.3)' : '0 8px 32px rgba(190, 49, 68, 0.2)',
+										border: `2px solid ${theme.palette.primary.main}40`,
+											position: 'relative',
+											overflow: 'hidden',
+											'&::before': {
+												content: '""',
+												position: 'absolute',
+												top: 0,
+												left: 0,
+												right: 0,
+												bottom: 0,
+												background: 'radial-gradient(circle at 30% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%)',
+												pointerEvents: 'none',
+											}
+										}}>
+										<Stack direction="row" spacing={2} alignItems="center" sx={{ mb: 1.5, position: 'relative', zIndex: 1 }}>
+											<Box
+												sx={{
+													width: 48,
+													height: 48,
+													display: 'flex',
+													alignItems: 'center',
+													justifyContent: 'center',
+													background: 'rgba(255, 255, 255, 0.2)',
+													borderRadius: 2,
+													fontSize: '2rem',
+												}}>
+												⭐
+											</Box>
+											<Box>
+												<Typography variant="overline" sx={{ color: 'rgba(255, 255, 255, 0.9)', fontWeight: 700, fontSize: '0.75rem' }}>
+													NOVEMBER 2025
+												</Typography>
+												<Typography variant="h6" sx={{ color: 'white', fontWeight: 700, fontSize: { xs: '1rem', md: '1.25rem' } }}>
+													Microsoft AI Innovation Challenge Winner
+												</Typography>
+											</Box>
+										</Stack>
+										<Typography
+											variant="body2"
+											sx={{
+												color: 'rgba(255, 255, 255, 0.95)',
+												mb: 2,
+												lineHeight: 1.6,
+												fontSize: { xs: '0.875rem', md: '1rem' },
+												position: 'relative',
+												zIndex: 1,
+											}}>
+										Built <strong>ChainReach AI</strong> - An innovative Azure-powered solution that won Top 3 at Microsoft's AI Innovation Challenge!
+									</Typography>
+										<Stack direction={{ xs: 'column', sm: 'row' }} spacing={1.5} sx={{ position: 'relative', zIndex: 1 }}>
+											<Button
+												variant="contained"
+												size="small"
+												href="https://github.com/nermeennasim/chainreach-ai"
+												target="_blank"
+												startIcon={<GitHubIcon />}
+												sx={{
+													background: 'white',
+													color: '#0078d4',
+													fontWeight: 600,
+													textTransform: 'none',
+													'&:hover': { background: 'rgba(255, 255, 255, 0.9)' }
+												}}>
+												View Project
+											</Button>
+											<Button
+												variant="outlined"
+												size="small"
+												href="https://techcommunity.microsoft.com/discussions/azure/the-november-innovation-challenge-winning-teams/4475579"
+												target="_blank"
+												sx={{
+													borderColor: 'white',
+													color: 'white',
+													fontWeight: 600,
+													textTransform: 'none',
+													'&:hover': { borderColor: 'white', background: 'rgba(255, 255, 255, 0.1)' }
+												}}>
+												Announcement
+											</Button>
+										</Stack>
+									</Box>
+								</motion.div>
+
 								<motion.div variants={itemVariants}>
 									<Typography
 										variant="h3"

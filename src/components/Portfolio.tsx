@@ -17,6 +17,39 @@ import { Launch, Code, Work } from "@mui/icons-material";
 
 const projects = [
 	{
+		name: "ChainReach AI - Microsoft Hackathon Winner",
+		description:
+			"Top 3 winner at Microsoft's November 2025 AI Innovation Challenge! An Azure-powered AI solution leveraging GPT-4, Azure AI Services, and blockchain technology to revolutionize supply chain transparency and traceability. Built during a 3 AM code review sprint that changed everything.",
+		liveLink: "https://drive.google.com/file/d/1w0l68XLDkhYwQqgXGuqNGZFrI5to2Qu-/view?usp=drive_link",
+		sourceCode: "https://github.com/nermeennasim/chainreach-ai",
+		tags: [
+			"Azure AI",
+			"GPT-4",
+			"React",
+			"Node.js",
+			"Blockchain",
+			"Microsoft Hackathon",
+			"Award Winner",
+		],
+		extraLinks: [
+			{
+				label: "MS Dev Radio Interview",
+				url: "https://www.youtube.com/watch?v=aoC48bp8WkI",
+				icon: "video",
+			},
+			{
+				label: "Microsoft Announcement",
+				url: "https://techcommunity.microsoft.com/discussions/azure/the-november-innovation-challenge-winning-teams/4475579",
+				icon: "announcement",
+			},
+			{
+				label: "Read Story on Medium",
+				url: "https://medium.com/venturehq/the-3-am-code-review-that-led-to-a-top-3-finish-at-microsofts-ai-innovation-challenge-94a5cf368d14",
+				icon: "article",
+			},
+		],
+	},
+	{
 		name: "Webhooks Parsing Mechanism",
 		description:
 			"Advanced webhooks integration system for Xytech v10.4+ enabling external systems to initiate workflows based on trigger events. Features outbound connections, export adaptors, and dynamic JSON/XML payload generation with real-time event processing.",
@@ -295,7 +328,7 @@ const Portfolio: React.FC = () => {
 										</Stack>
 									</CardContent>
 
-									<CardActions sx={{ p: 3, pt: 0, gap: 1 }}>
+									<CardActions sx={{ p: 3, pt: 0, gap: 1, flexWrap: "wrap" }}>
 										<Button
 											variant="contained"
 											size="small"
@@ -313,12 +346,10 @@ const Portfolio: React.FC = () => {
 													backgroundColor: theme.palette.primary.dark,
 													transform: "translateY(-1px)",
 												},
-												transition: "all 0.3s ease",
-											}}>
-											View Live
-										</Button>
-
-										{project.sourceCode !== "PROPRIETARY" &&
+									transition: "all 0.3s ease",
+								}}>
+								{project.extraLinks ? "Code Walkthrough" : "View Live"}
+							</Button>										{project.sourceCode !== "PROPRIETARY" &&
 											project.sourceCode !== "NOT AVAILABLE" && (
 												<Button
 													variant="outlined"
@@ -343,6 +374,32 @@ const Portfolio: React.FC = () => {
 													Source Code
 												</Button>
 											)}
+
+										{project.extraLinks?.map((extraLink: any, linkIndex: number) => (
+											<Button
+												key={linkIndex}
+												variant="outlined"
+												size="small"
+												startIcon={<Launch />}
+												href={extraLink.url}
+												target="_blank"
+												rel="noopener noreferrer"
+												sx={{
+													borderColor: theme.palette.info.main,
+													color: theme.palette.info.main,
+													fontWeight: 600,
+													textTransform: "none",
+													borderRadius: 2,
+													"&:hover": {
+														borderColor: theme.palette.info.main,
+														backgroundColor: `${theme.palette.info.main}20`,
+														transform: "translateY(-1px)",
+													},
+													transition: "all 0.3s ease",
+												}}>
+												{extraLink.label}
+											</Button>
+										))}
 
 										{project.sourceCode === "PROPRIETARY" && (
 											<Chip

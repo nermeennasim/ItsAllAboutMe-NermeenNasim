@@ -23,6 +23,16 @@ import {
 
 const writings = [
 	{
+		title: "The 3 AM Code Review That Led to a Top 3 Finish at Microsoft's AI Innovation Challenge",
+		description:
+			"The behind-the-scenes story of how a late-night debugging session, Azure AI integration, and unwavering determination led our team to win Top 3 at Microsoft's November 2025 Innovation Challenge with ChainReach AI.",
+		link: "https://medium.com/venturehq/the-3-am-code-review-that-led-to-a-top-3-finish-at-microsofts-ai-innovation-challenge-94a5cf368d14",
+		category: "Technical",
+		readTime: "12 min read",
+		tags: ["Microsoft", "Hackathon", "Azure AI", "Innovation", "Success Story"],
+		icon: <Code />,
+	},
+	{
 		title: "10 GitHub Copilot Commands That Will Rocket Your Coding in 2025",
 		description:
 			"Super-charge your development workflow with these essential GitHub Copilot commands and tips for maximum productivity in 2025.",
